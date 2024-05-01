@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+    
+  # middles
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root-pw
+      MYSQL_DATABASE: the_database
+      MYSQL_USER: ndxbn
+      MYSQL_PASSWORD: pw
+  redis:
+    container_name: redis
+    image: redis:alpine
+    restart: always
+    ports:
+      - "6379:6379"
+  redis-web:
+    container_name: redis-web
+    image: erikdubbelboer/phpredisadmin:latest
+    restart: always
+    ports:
+      - "6800:80"
+    environment:
+      REDIS_1_HOST: redis
+  minio:
+    container_name: minio
+    image: quay.io/minio/minio
+    restart: always
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: miniopass
+    volumes:
+      - ./storage/minio:/data:rw
+    command:
+      - server
+      - --console-address
+      - ":9001"
+      - /data
+
