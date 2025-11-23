@@ -3,7 +3,7 @@ services:
   # middles
   mysql:
     container_name: mysql
-    image: mysql:latest@sha256:439bfb4044dc59ade76c4e5c4065c02e5ba4d4007db32c40ac58d55c03069916
+    image: mysql:latest@sha256:569c4128dfa625ac2ac62cdd8af588a3a6a60a049d1a8d8f0fac95880ecdbbe5
     restart: always
     ports:
       - "3306:3306"
@@ -14,13 +14,13 @@ services:
       MYSQL_PASSWORD: pw
   redis:
     container_name: redis
-    image: redis:alpine@sha256:987c376c727652f99625c7d205a1cba3cb2c53b92b0b62aade2bd48ee1593232
+    image: redis:alpine@sha256:6cbef353e480a8a6e7f10ec545f13d7d3fa85a212cdcc5ffaf5a1c818b9d3798
     restart: always
     ports:
       - "6379:6379"
   redis-web:
     container_name: redis-web
-    image: erikdubbelboer/phpredisadmin:latest@sha256:630898c3c949d11fb76729dc858f1606079e7246ededec8a031354407fe75c7d
+    image: erikdubbelboer/phpredisadmin:latest@sha256:8bbf79270ba4fa0fba9ca146c151e477262a247ab6e297ce44a622853f17d592
     restart: always
     ports:
       - "6800:80"
@@ -28,7 +28,7 @@ services:
       REDIS_1_HOST: redis
   minio:
     container_name: minio
-    image: quay.io/minio/minio@sha256:d249d1fb6966de4d8ad26c04754b545205ff15a62e4fd19ebd0f26fa5baacbc0
+    image: quay.io/minio/minio@sha256:14cea493d9a34af32f524e538b8346cf79f3321eff8e708c1e2960462bd8936e
     restart: always
     ports:
       - "9000:9000"
